@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Patient from './Patient.jsx';
+import { Layout, Input, List, Card } from 'antd';
 import './App.css';
+
+const { Header, Content } = Layout;
+const Search = Input.Search;
 
 class App extends Component {
   constructor(props) {
@@ -9,12 +12,11 @@ class App extends Component {
 
     this.state = {};
 
-    this.setSearchTerms = this.setSearchTerms.bind(this);
     this.searchPatientNames = this.searchPatientNames.bind(this);
   }
 
-  searchPatientNames(event) {
-    fetch(`api/patient?name=${this.state.searchTerms}`, {
+  searchPatientNames(value) {
+    fetch(`api/patient?name=${value}`, {
       accept: 'application/json'
     })
     .then((response) => (
@@ -23,40 +25,43 @@ class App extends Component {
     .then((patients) => {
       this.setState({ patients });
     })
-
-    event.preventDefault();
-  }
-
-  setSearchTerms(event) {
-    this.setState({ searchTerms: event.target.value });
   }
 
   render() {
     const { patients } = this.state;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">FHIR Kit: Create React App</h1>
-        </header>
-        <section className="App-search">
-          <form className='App-search-form' onSubmit={this.searchPatientNames}>
-            <label>Search Patient Names: </label>
-            <input name='patient-search' type='text' onChange={this.setSearchTerms} />
-            <input type='submit' value='Search' />
-          </form>
-        </section>
-        <section className="App-intro">
-          {patients && patients.map((patient) =>
-            <Patient
-              id={patient.id}
-              name={patient.name}
-              birthDate={patient.birthDate}
-              gender={patient.gender} />
-          )}
-        </section>
-      </div>
+      <Layout className="App">
+        <Header className="App-header">
+          <h1>FHIR Kit: Create React App</h1>
+        </Header>
+        <Content className="App-content">
+          <h2>Patient Name Search Example</h2>
+          <Search
+            className="App-search"
+            placeholder="Search Patient Names"
+            enterButton="Search"
+            size="large"
+            onSearch={this.searchPatientNames}
+          />
+          <List
+            className="App-list"
+            grid={{ gutter: 16, column: 2 }}
+            dataSource={patients}
+            renderItem={patient => (
+              <List.Item>
+                <Card title={patient.name}>
+                <Patient
+                  id={patient.id}
+                  name={patient.name}
+                  birthDate={patient.birthDate}
+                  gender={patient.gender} />
+                </Card>
+              </List.Item>
+            )}
+          />
+        </Content>
+      </Layout>
     );
   }
 }

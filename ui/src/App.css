@@ -1,17 +1,21 @@
-.App {
+@import '~antd/dist/antd.css';
+
+.App-header {
+  background-color: #087ca7;
+}
+
+.App-header h1 {
+  color: whitesmoke;
+}
+
+.App-header, .App-footer {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.App-content {
+  text-align: center;
+  padding: 50px;
+  min-height: 500px;
 }
 
 .App-title {
@@ -20,6 +24,15 @@
 
 .App-intro {
   font-size: large;
+}
+
+.App-search {
+  max-width: 400px;
+  margin-bottom: 50px;
+}
+
+.App-list {
+  text-align: left;
 }
 
 @keyframes App-logo-spin {
