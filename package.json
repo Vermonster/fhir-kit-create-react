@@ -1,0 +1,19 @@
+{
+  "name": "fhir-kit-server-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"yarn run server\" \"yarn run ui\"",
+    "server": "node server.js",
+    "ui": "node start-ui.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "fhir-kit-client": "^0.2.2"
+  }
+}
