@@ -1,19 +1,22 @@
 {
-  "name": "fhir-kit-server-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "concurrently \"yarn run server\" \"yarn run ui\"",
-    "server": "node server.js",
-    "ui": "node start-ui.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
+  "name": "fhir-kit-create-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
+    "antd": "^3.5.3",
     "concurrently": "^3.5.1",
-    "express": "^4.16.3",
-    "fhir-kit-client": "^0.2.2"
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "install-kit": "yarn install && yarn --cwd 'server' install",
+    "start": "concurrently \"yarn run start-server\" \"yarn run start-ui\"",
+    "start-server": "node server/main.js",
+    "start-ui": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
