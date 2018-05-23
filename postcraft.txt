@@ -1,0 +1,1 @@
+Run `yarn install-kit` to install both ui and server.

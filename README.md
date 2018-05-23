@@ -22,7 +22,7 @@ $ yarn global add craftool
 ## Running the app
 
 `yarn start` will use [Concurrently](https://github.com/kimmobrunfeldt/concurrently) to run `server/main.js` and `react-scripts start`. The app starts out with an example
-of a patient name search using FHIRKit Client surfaced to a react-app using [Ant Design](https://github.com/ant-design/ant-design) UI components.
+of a patient name search using FHIRKit Client surfaced to a React app using [Ant Design](https://github.com/ant-design/ant-design) UI components.
 
 ## License
 
