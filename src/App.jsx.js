@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Patient from './Patient.jsx';
-import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
+import { Layout, Input, List, Card, Row, Col, Spin, Pagination } from 'antd';
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -23,17 +23,46 @@ class App extends Component {
     .then((response) => (
       response.json()
     ))
-    .then((patients) => {
-      this.setState({ patients: patients, loading: false, searchResolved: true })
+    .then((results) => {
+      this.setState({
+        total: results.total,
+        patients: results.patients,
+        prevPageLink: results.prevPageLink,
+        nextPageLink: results.nextPageLink,
+        loading: false,
+        searchResolved: true
+       });
     })
     .catch((err) => {
       console.log(err);
       this.setState({ loading: false });
-    })
+    });
+  }
+
+  turnPage(page, pageSize) {
+    console.log(page);
+    console.log(pageSize);
+    // fetch(pageLink, {
+    //   accept: 'application/json'
+    // })
+    // .then((results) => {
+    //   this.setState({
+    //     patients: results.patients
+    //   })
+    // })
+  }
+
+  itemRender(current, type, originalElement) {
+    if (type === 'prev') {
+      return <a>Previous</a>;
+    } else if (type === 'next') {
+      return <a>Next</a>;
+    }
+    return originalElement;
   }
 
   render() {
-    const { patients, loading, searchResolved } = this.state;
+    const { patients, loading, searchResolved, total } = this.state;
 
     return (
       <Layout className="App">
@@ -78,8 +107,13 @@ class App extends Component {
                   </List.Item>
                 )}
               />
+              <Pagination
+                total={total}
+                pageSize={4}
+                itemRender={this.itemRender}
+                onChange={this.turnPage}
+              />
           ) }
-
         </Content>
       </Layout>
     );
