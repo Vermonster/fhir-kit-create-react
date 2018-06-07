@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Patient from './Patient.jsx';
-import { Layout, Input, List, Card } from 'antd';
-import { Row, Col } from 'antd';
+import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -17,6 +16,7 @@ class App extends Component {
   }
 
   searchPatientNames(value) {
+    this.setState({ loading: true });
     fetch(`api/patient?name=${value}`, {
       accept: 'application/json'
     })
@@ -24,12 +24,16 @@ class App extends Component {
       response.json()
     ))
     .then((patients) => {
-      this.setState({ patients });
+      this.setState({ patients: patients, loading: false, searchResolved: true })
+    })
+    .catch((err) => {
+      console.log(err);
+      this.setState({ loading: false });
     })
   }
 
   render() {
-    const { patients } = this.state;
+    const { patients, loading, searchResolved } = this.state;
 
     return (
       <Layout className="App">
@@ -42,7 +46,6 @@ class App extends Component {
               <p>This is an example React app generated with the <a href="https://github.com/Vermonster/fhir-kit-create-react" rel="noopener noreferrer" target="_blank" title="FHIRKit Create React App repo"> FHIRKit Create React App</a> template.  The generated Node.js backend uses <a href="https://github.com/Vermonster/fhir-kit-client" rel="noopener noreferrer" target="_blank" title="FHIRKit Client repo"> FHIRKit Client</a> to search an open FHIR server.</p>
             </Col>
           </Row>
-
           <h2>Patient Name Search Example</h2>
           <Search
             className="App-search"
@@ -51,22 +54,32 @@ class App extends Component {
             size="large"
             onSearch={this.searchPatientNames}
           />
-          <List
-            className="App-list"
-            grid={{ gutter: 16, column: 2 }}
-            dataSource={patients}
-            renderItem={patient => (
-              <List.Item>
-                <Card title={patient.name}>
-                <Patient
-                  id={patient.id}
-                  name={patient.name}
-                  birthDate={patient.birthDate}
-                  gender={patient.gender} />
-                </Card>
-              </List.Item>
-            )}
-          />
+          { loading ? (
+              <Row type="flex" justify="center">
+                <Col span={4}>
+                  <Spin/>
+                </Col>
+              </Row>
+            ) : (
+              <List
+                className="App-list"
+                grid={{ gutter: 16, column: 2 }}
+                dataSource={patients}
+                locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
+                renderItem={patient => (
+                  <List.Item>
+                    <Card title={patient.name}>
+                    <Patient
+                      id={patient.id}
+                      name={patient.name}
+                      birthDate={patient.birthDate}
+                      gender={patient.gender} />
+                    </Card>
+                  </List.Item>
+                )}
+              />
+          ) }
+
         </Content>
       </Layout>
     );

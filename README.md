@@ -31,7 +31,12 @@ of a patient name search using FHIRKit Client surfaced to a React app using [Ant
 Update the react build with `yarn build`. To deploy to Heroku, for example, push the server directory with:
 
 ```
-$ git subtree push --prefix server heroku master
+$ git init .
+$ git add .
+$ git commit -m "Initial commit for my new FHIRKit create react app"
+$ heroku create
+$ git subtree push --prefix src/server heroku master
+$ heroku open
 ```
 
 ## License
