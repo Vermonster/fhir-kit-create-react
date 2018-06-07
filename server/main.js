@@ -32,24 +32,30 @@ app.get('/api/patient', (req, res) => {
         }
       }) : response;
 
-      const nextPageLink = response.link.find(link => link.relation === 'next');
-
-      const { searchParams } = new URL(nextPageLink.url);
-
-      const results = {
-        total: response.total,
-        _getpages: searchParams._getpages,
-        _getpagesoffset: searchParams._getpagesoffset,
-        _count: searchParams._count,
-        patients: patients,
-        prevPageLink: response.link.find(link => link.relation.match(/^prev(ious)?$/)),
-        nextPageLink: response.link.find(link => link.relation === 'next'),
-      }
-
-      console.log(results);
-
-      res.status(200).json(results);
+      res.status(200).json({ patients: patients, bundle: response, total: response.total });
     });
+  }
+});
+
+app.post('/api/patient', (req, res) => {
+  console.log(req);
+  client.pagination.initialize(req.body);
+
+ if (req.query.name) {
+  client.pagination.goToPage(req.query.page)
+    .then((response) => {
+      const patients = response.entry.map((obj) => {
+        return {
+          id: obj.resource.id,
+          name: `${obj.resource.name[0].given} ${obj.resource.name[0].family}`,
+          gender: obj.resource.gender,
+          birthDate: obj.resource.birthDate
+        }
+      });
+
+      res.status(200).json({ patients: patients, bundle: response, total: response.total });
+    });
+
   } else {
     res.status(200).json({ patients: []});
   }

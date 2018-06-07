@@ -24,13 +24,15 @@ class App extends Component {
       response.json()
     ))
     .then((results) => {
+
       this.setState({
-        total: results.total,
         patients: results.patients,
         prevPageLink: results.prevPageLink,
         nextPageLink: results.nextPageLink,
         loading: false,
-        searchResolved: true
+        searchResolved: true,
+        bundle: results.bundle,
+        total: results.total
        });
     })
     .catch((err) => {
@@ -39,17 +41,28 @@ class App extends Component {
     });
   }
 
-  turnPage(page, pageSize) {
-    console.log(page);
-    console.log(pageSize);
-    // fetch(pageLink, {
-    //   accept: 'application/json'
-    // })
-    // .then((results) => {
-    //   this.setState({
-    //     patients: results.patients
-    //   })
-    // })
+  turnPage = (page, pageSize) => {
+
+    fetch(`api/patient?page=${page}&page_size=${pageSize}`, {
+      body: JSON.stringify({ bundle: this.state.bundle }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      accept: 'application/json',
+      method: 'POST',
+      mode: 'cors'
+    })
+    .then((response) => (
+      response.json()
+    ))
+    .then((results) => {
+      console.log(results);
+      // this.setState({
+      //   patients: results.patients,
+      //   response: results.response
+      // });
+    })
   }
 
   itemRender(current, type, originalElement) {
@@ -90,29 +103,33 @@ class App extends Component {
                 </Col>
               </Row>
             ) : (
-              <List
-                className="App-list"
-                grid={{ gutter: 16, column: 2 }}
-                dataSource={patients}
-                locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
-                renderItem={patient => (
-                  <List.Item>
-                    <Card title={patient.name}>
-                    <Patient
-                      id={patient.id}
-                      name={patient.name}
-                      birthDate={patient.birthDate}
-                      gender={patient.gender} />
-                    </Card>
-                  </List.Item>
-                )}
-              />
-              <Pagination
-                total={total}
-                pageSize={4}
-                itemRender={this.itemRender}
-                onChange={this.turnPage}
-              />
+              <Row type="flex" justify="center">
+                <Col span={24}>
+                  <List
+                    className="App-list"
+                    grid={{ gutter: 16, column: 2 }}
+                    dataSource={patients}
+                    locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
+                    renderItem={patient => (
+                      <List.Item>
+                        <Card title={patient.name}>
+                        <Patient
+                          id={patient.id}
+                          name={patient.name}
+                          birthDate={patient.birthDate}
+                          gender={patient.gender} />
+                        </Card>
+                      </List.Item>
+                    )}
+                  />
+                  <Pagination
+                    total={total}
+                    pageSize={4}
+                    itemRender={this.itemRender}
+                    onChange={this.turnPage}
+                  />
+                </Col>
+              </Row>
           ) }
         </Content>
       </Layout>
