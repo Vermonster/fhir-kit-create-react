@@ -15,7 +15,7 @@ const Patient = ({ id, name, gender, birthDate }) => {
 
 Patient.propTypes = {
   id: PropTypes.string,
-  name: PropTypes.array,
+  name: PropTypes.string,
   gender: PropTypes.string,
   birthDate: PropTypes.string
 }
