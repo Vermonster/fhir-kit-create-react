@@ -6,8 +6,10 @@ const client = new fhirKitClient(config);
 
 const app = express();
 
+app.set("port", process.env.PORT || 3001);
+
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('build'));
 }
 
 app.get('/api/patient', (req, res) => {
@@ -30,6 +32,6 @@ app.get('/api/patient', (req, res) => {
   }
 });
 
-app.listen(3001, () => {
+app.listen(app.get('port'), () => {
   console.log('Express server started on port 3001');
 });

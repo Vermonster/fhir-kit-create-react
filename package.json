@@ -15,7 +15,7 @@
     "start": "concurrently \"yarn run start-server\" \"yarn run start-ui\"",
     "start-server": "node server/main.js",
     "start-ui": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build server/build || move build server/build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
