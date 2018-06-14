@@ -26,8 +26,6 @@ class App extends Component {
     .then((results) => {
       this.setState({
         patients: results.patients,
-        prevPageLink: results.prevPageLink,
-        nextPageLink: results.nextPageLink,
         loading: false,
         searchResolved: true,
         bundle: results.bundle,
