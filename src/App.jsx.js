@@ -24,7 +24,6 @@ class App extends Component {
       response.json()
     ))
     .then((results) => {
-
       this.setState({
         patients: results.patients,
         prevPageLink: results.prevPageLink,
@@ -41,9 +40,9 @@ class App extends Component {
     });
   }
 
-  turnPage = (page, pageSize) => {
+  turnPage = (page, _pageSize) => {
 
-    fetch(`api/patient?page=${page}&page_size=${pageSize}`, {
+    fetch(`api/patient?page=${page}`, {
       body: JSON.stringify({ bundle: this.state.bundle }),
       headers: {
         'Accept': 'application/json',
@@ -57,11 +56,11 @@ class App extends Component {
       response.json()
     ))
     .then((results) => {
-      console.log(results);
-      // this.setState({
-      //   patients: results.patients,
-      //   response: results.response
-      // });
+      this.setState({
+        patients: results.patients,
+        bundle: results.bundle,
+        total: results.total
+      });
     })
   }
 
@@ -105,6 +104,7 @@ class App extends Component {
             ) : (
               <Row type="flex" justify="center">
                 <Col span={24}>
+                  <h3>{ total ? (total + ' result(s)') : ''}</h3>
                   <List
                     className="App-list"
                     grid={{ gutter: 16, column: 2 }}

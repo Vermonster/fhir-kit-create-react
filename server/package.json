@@ -12,7 +12,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "express-session": "^1.15.6",
-    "fhir-kit-client": "file:../../fhir-kit-client"
+    "fhir-kit-client": "^0.2.2"
   }
 }
