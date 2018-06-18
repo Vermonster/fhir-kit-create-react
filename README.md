@@ -31,6 +31,7 @@ of a patient name search using FHIRKit Client surfaced to a React app using [Ant
 Update the react build with `yarn build`. Use the example express server to serve the new build. For example:
 
 ```
+$ yarn build
 $ git init .
 $ git add .
 $ git commit -m "Initial commit for my new FHIRKit create react app"
