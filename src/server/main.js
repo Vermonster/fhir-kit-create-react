@@ -35,5 +35,5 @@ app.get('/api/patient', (req, res) => {
 });
 
 app.listen(app.get('port'), () => {
-  console.log('Express server started on port 3001');
+  console.log('Express server started');
 });
