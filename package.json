@@ -11,11 +11,11 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "install-kit": "yarn install && yarn --cwd 'server' install",
+    "install-kit": "mv src/server/package-server.json src/server/package.json && yarn install && yarn --cwd 'src/server' install",
     "start": "concurrently \"yarn run start-server\" \"yarn run start-ui\"",
-    "start-server": "node server/main.js",
+    "start-server": "node src/server/main.js",
     "start-ui": "react-scripts start",
-    "build": "react-scripts build && rm -rf server/build && mv build server",
+    "build": "react-scripts build && rm -rf src/server/build && mv build src/server",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
