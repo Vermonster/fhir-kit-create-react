@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Patient from './Patient.jsx';
-import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
+import { Layout, Input, List, Card, Row, Col, Spin, Pagination } from 'antd';
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -23,17 +23,56 @@ class App extends Component {
     .then((response) => (
       response.json()
     ))
-    .then((patients) => {
-      this.setState({ patients: patients, loading: false, searchResolved: true })
+    .then((results) => {
+      this.setState({
+        patients: results.patients,
+        loading: false,
+        searchResolved: true,
+        bundle: results.bundle,
+        total: results.total
+       });
     })
     .catch((err) => {
       console.log(err);
       this.setState({ loading: false });
+    });
+  }
+
+  turnPage = (page, _pageSize) => {
+
+    fetch(`api/patient?page=${page}`, {
+      body: JSON.stringify({ bundle: this.state.bundle }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      accept: 'application/json',
+      method: 'POST',
+      mode: 'cors'
+    })
+    .then((response) => (
+      response.json()
+    ))
+    .then((results) => {
+      this.setState({
+        patients: results.patients,
+        bundle: results.bundle,
+        total: results.total
+      });
     })
   }
 
+  itemRender(current, type, originalElement) {
+    if (type === 'prev') {
+      return <a>Previous</a>;
+    } else if (type === 'next') {
+      return <a>Next</a>;
+    }
+    return originalElement;
+  }
+
   render() {
-    const { patients, loading, searchResolved } = this.state;
+    const { patients, loading, searchResolved, total } = this.state;
 
     return (
       <Layout className="App">
@@ -61,25 +100,35 @@ class App extends Component {
                 </Col>
               </Row>
             ) : (
-              <List
-                className="App-list"
-                grid={{ gutter: 16, column: 2 }}
-                dataSource={patients}
-                locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
-                renderItem={patient => (
-                  <List.Item>
-                    <Card title={patient.name}>
-                    <Patient
-                      id={patient.id}
-                      name={patient.name}
-                      birthDate={patient.birthDate}
-                      gender={patient.gender} />
-                    </Card>
-                  </List.Item>
-                )}
-              />
+              <Row type="flex" justify="center">
+                <Col span={24}>
+                  <h3>{ total ? (total + ' result(s)') : ''}</h3>
+                  <List
+                    className="App-list"
+                    grid={{ gutter: 16, column: 2 }}
+                    dataSource={patients}
+                    locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
+                    renderItem={patient => (
+                      <List.Item>
+                        <Card title={patient.name}>
+                        <Patient
+                          id={patient.id}
+                          name={patient.name}
+                          birthDate={patient.birthDate}
+                          gender={patient.gender} />
+                        </Card>
+                      </List.Item>
+                    )}
+                  />
+                  <Pagination
+                    total={total}
+                    pageSize={4}
+                    itemRender={this.itemRender}
+                    onChange={this.turnPage}
+                  />
+                </Col>
+              </Row>
           ) }
-
         </Content>
       </Layout>
     );
