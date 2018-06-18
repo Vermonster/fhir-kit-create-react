@@ -11,7 +11,7 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "install-kit": "yarn install && yarn --cwd 'src/server' install",
+    "install-kit": "mv src/server/package-server.json src/server/package.json && yarn install && yarn --cwd 'src/server' install",
     "start": "concurrently \"yarn run start-server\" \"yarn run start-ui\"",
     "start-server": "node src/server/main.js",
     "start-ui": "react-scripts start",
