@@ -32,7 +32,8 @@ Update the react build with `yarn build`. Use the example express server to serv
 
 ```
 $ git init .
-$ git commit --all -m "Initial commit for my new FHIRKit create react app"
+$ git add .
+$ git commit -m "Initial commit for my new FHIRKit create react app"
 $ heroku create
 $ git subtree push --prefix src/server heroku master
 $ heroku open
