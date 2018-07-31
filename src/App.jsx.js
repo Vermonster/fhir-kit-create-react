@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import Patient from './Patient.jsx';
-import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
+import { Layout, Input, List, Row, Col, Spin } from 'antd';
+//removed Card from above import
+import Card from 'terra-card';
+//removed Layout from antd + put back
+// import Layout from 'terra-layout';
+// import Heading from 'terra-heading';
+// import ContentContainer from 'terra-content-container';
+
+
 import './App.css';
 
+//both of below pull from ant Layout
 const { Header, Content } = Layout;
+
+
 const Search = Input.Search;
+//doesn't exist in Terra-UI
+//in ant, defines two properties-- enterButton and onSearch
+//to do this in Terra-ui, many different components. For instance, search button is
+//not included in the input. 
 
 class App extends Component {
   constructor(props) {
