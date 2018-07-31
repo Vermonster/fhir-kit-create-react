@@ -1,7 +1,7 @@
 const express = require('express');
 const fhirKitClient = require('fhir-kit-client');
 
-const config = { baseUrl: 'https://sb-fhir-stu3.smarthealthit.org/smartstu3/open/' };
+const config = { baseUrl: 'https://r3.smarthealthit.org/' };
 const client = new fhirKitClient(config);
 
 const app = express();
