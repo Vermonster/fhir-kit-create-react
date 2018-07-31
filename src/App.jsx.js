@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Patient from './Patient.jsx';
 import { Layout, Input, List, Row, Col, Spin } from 'antd';
 //removed Card from above import
-import Card from 'terra-card';
+import Card from 'terra-card/lib/Card';
 //removed Layout from antd + put back
 // import Layout from 'terra-layout';
 // import Heading from 'terra-heading';
@@ -83,7 +83,7 @@ class App extends Component {
                 locale={searchResolved ? { emptyText: 'No results found.' } : { emptyText: '' }}
                 renderItem={patient => (
                   <List.Item>
-                    <Card title={patient.name}>
+                    <Card>
                     <Patient
                       id={patient.id}
                       name={patient.name}
