@@ -5,10 +5,10 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "antd": "^3.5.3",
-    "concurrently": "^3.5.1",
+    "concurrently": "^4.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "2.1.1"
   },
   "scripts": {
     "install-kit": "mv src/server/package-server.json src/server/package.json && yarn install && yarn --cwd 'src/server' install",
