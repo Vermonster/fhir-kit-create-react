@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.3",
-    "fhir-kit-client": "^0.2.2"
+    "fhir-kit-client": "^0.4.4"
   }
 }
