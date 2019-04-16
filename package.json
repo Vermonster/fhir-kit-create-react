@@ -1,22 +1,11 @@
 {
   "name": "fhir-kit-create-react-app",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
-    "antd": "^3.5.3",
-    "concurrently": "^4.1.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "2.1.1"
+    "concurrently": "^4.1.0"
   },
   "scripts": {
-    "install-kit": "mv server/package-server.json server/package.json && yarn install && yarn --cwd 'server' install",
-    "start": "concurrently \"yarn run start-server\" \"yarn run start-ui\"",
-    "start-server": "node server/main.js",
-    "start-ui": "react-scripts start",
-    "build": "react-scripts build && rm -rf server/build && mv build server",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "install-kit": "bin/install-kit",
+    "start": "concurrently \"cd server && yarn run start\" \"cd frontend && yarn run start\""
   }
 }
