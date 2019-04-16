@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+(cd server; mv package-server.json package.json && yarn install)
+(cd frontend; mv package-frontend.json package.json && yarn install)
