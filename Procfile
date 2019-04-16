@@ -1,2 +1,2 @@
-web: npm run start-server
-ui: npm run start-ui
+web: cd server && npm run start
+ui: cd frontend && npm run start
