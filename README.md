@@ -27,19 +27,21 @@ $ npm run install-kit
 
 ## Running the app
 
-`yarn start` will use
+`npm start` will use
 [Concurrently](https://github.com/kimmobrunfeldt/concurrently) to run
 `server/main.js` and `react-scripts start`. The app starts out with an example
 of a patient name search using FHIRKit Client surfaced to a React app using
 [Ant Design](https://github.com/ant-design/ant-design) UI components.
 
-## Deployment
+## Deployment to Heroku
 
-Update the react build with `yarn build`. Use the example express server to
+You will need to install the [Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cl).
+
+Update the react build with `npm build`. Use the example express server to
 serve the new build. For example:
 
 ```
-$ yarn build
+$ npm run build
 $ git init .
 $ git add .
 $ git commit -m "Initial commit for my new FHIRKit create react app"
