@@ -27,7 +27,11 @@ app.get('/api/patient', (req, res) => {
         }
       }) : response;
 
-      res.status(200).json(patients);
+      if (patients.length > 0) {
+        res.status(200).json(patients);
+      } else {
+        res.status(200).json({ patients: []});
+      }
     });
   } else {
     res.status(200).json({ patients: []});

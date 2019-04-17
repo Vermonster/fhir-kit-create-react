@@ -1,11 +1,11 @@
 {
   "name": "fhir-kit-create-react-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dependencies": {
     "concurrently": "^4.1.0"
   },
   "scripts": {
     "install-kit": "bin/install-kit",
-    "start": "concurrently \"cd server && yarn run start\" \"cd frontend && yarn run start\""
+    "start": "concurrently \"cd server && npm start\" \"cd frontend && npm start\""
   }
 }

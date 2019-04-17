@@ -1,1 +1,1 @@
-Run `yarn install-kit` to install both ui and server.
+Run `npm run install-kit` to install both ui and server.
