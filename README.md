@@ -9,9 +9,11 @@ View an example deployment of the app at
 
 ## Installing
 
+NOTE: If you are on windows, you should consider a bash shell, such as enabling the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
+
 ```
-$ yarn global add create-react-app
-$ yarn global add craftool
+$ npm install -g create-react-app
+$ npm install -g craftool
 ```
 
 ## Using the template
@@ -20,7 +22,7 @@ $ yarn global add craftool
 $ craft MyFHIRKitApp https://github.com/Vermonster/fhir-kit-create-react/archive/master.zip
 
 $ cd MyFHIRKitApp
-$ yarn install-kit
+$ npm run install-kit
 ```
 
 ## Running the app
@@ -50,4 +52,4 @@ $ heroku open
 
 MIT
 
-Copyright (c) 2018 Vermonster LLC
+Copyright (c) 2019 Vermonster LLC

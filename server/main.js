@@ -25,7 +25,7 @@ app.get('/api/patient', (req, res) => {
           gender: obj.resource.gender,
           birthDate: obj.resource.birthDate
         }
-      }) : response;
+      }) : [];
 
       res.status(200).json(patients);
     });
