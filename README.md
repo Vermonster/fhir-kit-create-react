@@ -48,7 +48,7 @@ development, independent of FHIR modeling and integration.
 ## Installing
 
 NOTE: If you are on windows, you should consider a bash shell, such as enabling
-the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
+the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) ([why?](https://docs.microsoft.com/en-us/windows/wsl/faq)).
 
 ```
 $ npm install -g create-react-app
