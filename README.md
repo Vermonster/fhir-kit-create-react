@@ -35,7 +35,7 @@ of a patient name search using FHIRKit Client surfaced to a React app using
 
 ## Deployment to Heroku
 
-You will need to install the [Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cl).
+You will need to install the [Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cli).
 
 Update the react build with `npm build`. Use the example express server to
 serve the new build. For example:
