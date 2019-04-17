@@ -7,9 +7,48 @@ an Express.js server.
 View an example deployment of the app at
 [https://fhir-kit-react.herokuapp.com](http://fhir-kit-react.herokuapp.com/).
 
+## Architecture
+
+This template uses the common BFF (Backend for Frontend) pattern. From our
+experience, this separation leads to more efficient and enjoyable development,
+as it allows teams to follow conventional React patterns (e.g. use standard
+JSON-API -like API and build optimized domain models) and keeps the FHIR logic
+in one place, on the server. This pattern also allows us to keep secret keys
+and other logic on the server.
+
+For instance, consider patient React component that may show patient name,
+active conditions, and most recent heigh, weight, and blood pressure. A simple
+flat model in React/BFF can be built. The logic to initiate the multiple FHIR
+queries and process the results happens on the server. This also leads to nice
+patterns where domain models can be mocked to allow for rapid react
+development, independent of FHIR modeling and integration.
+
+
+```
+
+  +------------------+
+  |      EHR         |
+  |..................|
+  |   FHIR |  OAuth2 |
+  +------------------+
+           :
+           : (FHIR)
+           :
+  +------------------+  ----.
+  | Server (Express) |      |
+  +..................+      |
+           : (BFF)      this template
+  +..................+      |
+  |  Client (React)  |      |
+  +------------------+  ----'
+
+```
+
+
 ## Installing
 
-NOTE: If you are on windows, you should consider a bash shell, such as enabling the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
+NOTE: If you are on windows, you should consider a bash shell, such as enabling
+the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
 
 ```
 $ npm install -g create-react-app
