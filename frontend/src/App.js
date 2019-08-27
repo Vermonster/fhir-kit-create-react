@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Patient from './Patient.jsx';
+import Patient from './Patient';
 import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
 import './App.css';
 
