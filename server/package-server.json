@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.3",
-    "fhir-kit-client": "^1.0.0"
+    "express": "^4.17.1",
+    "fhir-kit-client": "^1.5.2"
   }
 }

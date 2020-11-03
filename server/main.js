@@ -30,7 +30,7 @@ app.get('/api/patient', (req, res) => {
       res.status(200).json(patients);
     });
   } else {
-    res.status(200).json({ patients: []});
+    res.status(200).json([]);
   }
 });
 
