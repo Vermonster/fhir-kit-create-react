@@ -5,7 +5,8 @@
     "concurrently": "^4.1.2"
   },
   "scripts": {
-    "install-kit": "bin/install-kit",
-    "start": "concurrently \"cd server && npm start\" \"cd frontend && npm start\""
+    "install": "concurrently \"cd server && npm install\" \"cd frontend && npm install\"",
+    "start": "concurrently \"cd server && npm start\" \"cd frontend && npm start\"",
+    "storybook": "cd frontend && npm run storybook"
   }
 }
