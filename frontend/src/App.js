@@ -61,7 +61,7 @@ const App = () => {
           placeholder="Search Patient Names"
           enterButton="Search"
           size="large"
-          onSearch={usePatientSearch}
+          onSearch={searchPatientNames}
         />
         { loading ? (
             <Row type="flex" justify="center">
