@@ -82,21 +82,13 @@ const patient = {
 
 ## Installing
 
-NOTE: If you are on windows, you should consider a bash shell, such as enabling
-the [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) ([why?](https://docs.microsoft.com/en-us/windows/wsl/faq)).
-
 ```
-$ npm install -g create-react-app
-$ npm install -g craftool
-```
+$ git clone https://github.com/stevennevins/fhir-kit-create-react.git
 
-## Using the template
+$ cd fhir-kit-create-react
 
-```
-$ craft MyFHIRKitApp https://github.com/Vermonster/fhir-kit-create-react/archive/master.zip
+$ npm install
 
-$ cd MyFHIRKitApp
-$ npm run install-kit
 ```
 
 ## Running the app
