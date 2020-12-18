@@ -13,12 +13,22 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/node-logger": "^6.1.11",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.11"
+  }
 }
