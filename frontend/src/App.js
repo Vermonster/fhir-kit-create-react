@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
 import Patient from './Patient';
-import { usePatientSearch } from "./hooks";
 import './App.css';
 
 const { Header, Content } = Layout;
