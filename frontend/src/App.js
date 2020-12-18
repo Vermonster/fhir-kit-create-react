@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout, Input, List, Card, Row, Col, Spin } from 'antd';
 import Patient from './Patient';
+import { usePatientSearch } from "./hooks";
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -61,7 +62,7 @@ const App = () => {
           placeholder="Search Patient Names"
           enterButton="Search"
           size="large"
-          onSearch={searchPatientNames}
+          onSearch={usePatientSearch}
         />
         { loading ? (
             <Row type="flex" justify="center">
