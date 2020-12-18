@@ -93,11 +93,27 @@ $ npm install
 
 ## Running the app
 
+```
+
+$ npm start
+
+```
+
 `npm start` will use
 [Concurrently](https://github.com/kimmobrunfeldt/concurrently) to run
-`server/main.js` and `react-scripts start`. The app starts out with an example
-of a patient name search using FHIRKit Client surfaced to a React app using
-[Ant Design](https://github.com/ant-design/ant-design) UI components.
+`server/main.js` and `react-scripts start`. 
+
+# Design
+
+I also added stories tool to design and test components.
+
+```
+
+$ npm run storybook
+
+```
+The app starts out with an example of a patient name search using FHIRKit Client
+[Ant Design](https://github.com/ant-design/ant-design) UI components are included to get started.  
 
 ## Deployment to Heroku
 
