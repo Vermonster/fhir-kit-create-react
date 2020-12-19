@@ -42,6 +42,7 @@ active condition, and most recent height, weight, and blood pressure. A simple
 flat model in React/BFF can be built. In react this could be modeled like this:
 
 ```js
+
 Patient.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
@@ -50,6 +51,7 @@ Patient.propTypes = {
   weight: PropTypes.string,
   bloodPressure: PropTypes.string
 }
+
 ```
 
 The logic to issue multiple FHIR queries and process the results happens
@@ -62,6 +64,7 @@ non-FHIR APIs while keeping that complexity out of the react application code.
 Here is an example server implementation:
 
 ```node
+
 const fhirPatient = await fhirClient.read({ resourceType: 'Patient', id: '12345' });
 const fhirCondition = await fhirClient.search({
   resourceType: 'Condition',
@@ -82,20 +85,21 @@ const patient = {
 
 ## Installing
 
-```
-$ git clone https://github.com/stevennevins/fhir-kit-create-react.git
+```bash
 
-$ cd fhir-kit-create-react
+git clone https://github.com/stevennevins/fhir-kit-create-react.git
 
-$ npm install
+cd fhir-kit-create-react
+
+npm install
 
 ```
 
 ## Running the app
 
-```
+```bash
 
-$ npm start
+npm start
 
 ```
 
@@ -103,13 +107,13 @@ $ npm start
 [Concurrently](https://github.com/kimmobrunfeldt/concurrently) to run
 `server/main.js` and `react-scripts start`. 
 
-# Design
+## Design
 
 I also added stories tool to design and test components.
 
-```
+```bash
 
-$ npm run storybook
+npm run storybook
 
 ```
 The app starts out with an example of a patient name search using FHIRKit Client
@@ -123,14 +127,22 @@ tools](https://devcenter.heroku.com/articles/heroku-cli).
 Update the react build with `npm build`. Use the example express server to
 serve the new build. For example:
 
-```
-$ npm run build
-$ git init .
-$ git add .
-$ git commit -m "Initial commit for my new FHIRKit create react app"
-$ heroku create
-$ git subtree push --prefix src/server heroku master
-$ heroku open
+```bash
+
+npm run build
+
+git init .
+
+git add .
+
+git commit -m "Initial commit for my new FHIRKit create react app"
+
+heroku create
+
+git subtree push --prefix src/server heroku master
+
+heroku open
+
 ```
 
 ## License
